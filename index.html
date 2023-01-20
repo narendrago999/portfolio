@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="color-5.css" class="alternate-style" title="color-5" disabled>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2845295883834438"
      crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("ePgXctzZsLYvaLqtG");
+        })();
+    </script>
 </head>
 
 <body>
@@ -462,7 +470,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
-                                    <button type="submit" class="btn" onclick="sendmaill()">Send Message</button>
+                                    <button type="submit" class="btn" onclick="sendMail()">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -490,24 +498,18 @@
             <span class="color-5" onclick="setActiveStyle('color-5')"></span>
         </div>
     </div>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
     <script>
-        function sendmaill() {
-            Email.send({
-                Host: "smtp.elasticemail.com",
-                Username: "narendrago999@gmail.com",
-                Password: "603A1F82458A138075B6A67AA2619B2BAF49",
-                To: "narendragodara772@gmail.com",
-                From: "narendrago999@gmail.com",
-               
-                Subject: "subject : " + document.getElementById("sub").value,
-                Body:  "Body : " +document.getElementById("ta").value +"   "
-                +"Name : " +document.getElementById("name").value +"   "
-                +"Email : " +document.getElementById("email").value,
-             
-            }).then(
-                message => alert("successfully sent")
-            );
+        function sendMail(){
+            var params = {
+                fullName : document.getElementById("name").value,
+                email_id : document.getElementById("email").value,
+                number : document.getElementById("sub").value,
+                message : document.getElementById("ta").value
+            }
+            emailjs.send("service_az5lwv9", "template_z9c85ni", params).then(function (res){
+                alert("send success!");
+            })
         }
     </script>
     <script src="sstyle-switcher.js"></script>
